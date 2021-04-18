@@ -1,0 +1,81 @@
+// Copyright 2015 gRPC authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package upbitapiserver;
+
+// The greeting service definition.
+service UpbitApiServer {
+  rpc Ping (PingRequest) returns (PingReply) {}
+  rpc ListCoin (ListCoinRequest) returns (ListCoinReply) {}
+  rpc TickerCoin (TickerCoinRequest) returns (TickerCoinReply) {}
+}
+
+message PingRequest {
+  string message = 1;
+}
+
+message PingReply {
+  string message = 1;
+}
+
+message ListCoin {
+  string market = 1;
+  string korean_name = 2;
+  string english_name = 3;
+}
+message ListCoinRequest {}
+message ListCoinReply {
+  repeated ListCoin coins = 1;
+}
+
+
+message TickerCoin {
+  string market = 1;
+  string trade_date = 2;
+  string trade_time = 3;
+  string trade_date_kst = 4;
+  string trade_time_kst = 5;
+  double opening_price = 6;
+  double high_price = 7;
+  double low_price = 8;
+  double trade_price = 9;
+  double prev_closing_price = 10;
+  string change = 11;
+  double change_price = 12;
+  double change_rate = 13;
+  double signed_change_price = 14;
+  double signed_change_rate = 15;
+  double trade_volume = 16;
+  double acc_trade_price = 17;
+  double acc_trade_price_24h = 18;
+  double acc_trade_volume = 19;
+  double acc_trade_volume_24h = 20;
+  double highest_52_week_price = 21;
+  string highest_52_week_date = 22;
+  double lowest_52_week_price = 23;
+  string lowest_52_week_date = 24;
+  uint64 timestamp = 25;
+}
+
+
+message TickerCoinRequest {
+  string markets = 1;
+}
+
+
+message TickerCoinReply {
+  repeated TickerCoin coins = 1;
+}
